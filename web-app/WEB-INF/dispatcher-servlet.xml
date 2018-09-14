@@ -1,0 +1,43 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="RGDHandlerInterceptor" class="edu.mcw.rgd.web.RGDHandlerInterceptor">
+    </bean>
+      
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
+    </bean>
+
+    <bean id="publicUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref local="RGDHandlerInterceptor"/>
+            </list>
+        </property>
+        <property name="mappings">
+            <props>
+                <prop key="dashboard.html">dashboardController</prop>
+                <prop key="index.html">dashboardController</prop>
+                <prop key="patient.html">patientController</prop>
+                <prop key="addPatient.html">addPatientController</prop>
+                <prop key="clinVar.html">clinVarController</prop>
+                <prop key="uploadList.html">uploadListController</prop>
+                <prop key="ontology/view.html">OntologyViewController</prop>
+
+            </props>
+        </property>
+    </bean>
+
+
+
+    <bean id="clinVarController" class="edu.mcw.rgd.controller.ClinVarController"/>
+
+   <bean id="dashboardController" class="edu.mcw.rgd.controller.DashboardController"/>
+    <bean id="patientController" class="edu.mcw.rgd.controller.PatientController"/>
+    <bean id="addPatientController" class="edu.mcw.rgd.controller.AddPatientController"/>
+    <bean id="uploadListController" class="edu.mcw.rgd.controller.UploadGeneListController"/>
+    <bean id="OntologyViewController" class="edu.mcw.rgd.ontology.OntViewController"/>
+
+</beans>
+
+
